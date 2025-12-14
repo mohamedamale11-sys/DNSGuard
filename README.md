@@ -28,6 +28,10 @@ DNSGuard is designed to make these behaviors *observable* and *reproducible* thr
 ## Quick start
 ![DNSGuard HTML report example](assets/image.png)
 
+
+## How DNSGuard works (architecture)
+
+![DNSGuard architecture](assets/architecture.png)
 ### Install (editable)
 ```bash
 python3 -m venv .venv
