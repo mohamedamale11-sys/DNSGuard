@@ -26,6 +26,7 @@ DNSGuard is designed to make these behaviors *observable* and *reproducible* thr
 ---
 
 ## Quick start
+![DNSGuard HTML report example](assets/image.png)
 
 ### Install (editable)
 ```bash
@@ -76,4 +77,9 @@ FINAL:
 (.venv) mohamedali@Mohameds-MacBook-Air dnsguard % dnsguard scan example.com --trace --ns-resolver 8.8.8.8 --out report.json --html report.html
 (.venv) mohamedali@Mohameds-MacBook-Air dnsguard % open report.html
 
+
+
+
+
 ![DNSGuard HTML report example](assets/image.png)
+
