@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNSGuard Report - example.com</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 24px; line-height: 1.4; }
+    .card { border: 1px solid #2a2a2a; border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+    .muted { opacity: 0.8; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    h1 { margin: 0 0 8px 0; }
+    h2 { margin: 0 0 8px 0; }
+    code, pre { background: #0f0f0f; color: #f2f2f2; padding: 10px; border-radius: 10px; overflow-x: auto; }
+    pre { margin: 0; }
+    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; border:1px solid #444; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DNSGuard Report</h1>
+    <div class="muted">Domain: <strong>example.com</strong> · Created: 2025-12-14T10:54:13.911805+00:00</div>
+    <div style="margin-top:10px;">
+      <span class="pill">Score: 85</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Key Findings</h2>
+      <ul><li>Null MX detected: domain is signaling it does not accept email (good for reducing misdirected mail).</li><li>DNSSEC signals detected (DS + DNSKEY/RRSIG). Full validation requires a validating resolver and chain checks.</li><li>No CAA records found. CAA is optional but can reduce certificate mis-issuance risk.</li></ul>
+    </div>
+    <div class="card">
+      <h2>Raw Summary</h2>
+      <pre>{
+  &quot;primary_resolver&quot;: &quot;1.1.1.1&quot;,
+  &quot;resolvers_compared&quot;: [
+    &quot;1.1.1.1&quot;,
+    &quot;8.8.8.8&quot;,
+    &quot;9.9.9.9&quot;
+  ],
+  &quot;ns_resolver_for_trace&quot;: &quot;8.8.8.8&quot;
+}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Email Security</h2>
+    <pre>{
+  &quot;domain&quot;: &quot;example.com&quot;,
+  &quot;mx&quot;: [
+    &quot;0 .&quot;
+  ],
+  &quot;mx_null&quot;: true,
+  &quot;spf&quot;: {
+    &quot;raw&quot;: &quot;v=spf1 -all&quot;,
+    &quot;policy&quot;: &quot;-all&quot;,
+    &quot;warnings&quot;: []
+  },
+  &quot;dmarc&quot;: {
+    &quot;raw&quot;: &quot;v=DMARC1;p=reject;sp=reject;adkim=s;aspf=s&quot;,
+    &quot;policy&quot;: &quot;reject&quot;,
+    &quot;warnings&quot;: []
+  },
+  &quot;dkim_selectors_checked&quot;: [],
+  &quot;dkim_found&quot;: {},
+  &quot;findings&quot;: [
+    &quot;Null MX detected: domain is signaling it does not accept email (good for reducing misdirected mail).&quot;
+  ]
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>DNSSEC</h2>
+    <pre>{
+  &quot;domain&quot;: &quot;example.com&quot;,
+  &quot;ds_present&quot;: true,
+  &quot;rrsig_present&quot;: true,
+  &quot;notes&quot;: [
+    &quot;DNSSEC signals detected (DS + DNSKEY/RRSIG). Full validation requires a validating resolver and chain checks.&quot;
+  ]
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>CAA</h2>
+    <pre>{
+  &quot;domain&quot;: &quot;example.com&quot;,
+  &quot;records&quot;: [],
+  &quot;has_caa&quot;: false,
+  &quot;notes&quot;: [
+    &quot;No CAA records found. CAA is optional but can reduce certificate mis-issuance risk.&quot;
+  ]
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Takeover Indicators</h2>
+    <pre>{
+  &quot;domain&quot;: &quot;example.com&quot;,
+  &quot;cname_chain&quot;: [],
+  &quot;dangling_cname&quot;: false,
+  &quot;notes&quot;: []
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Resolver Comparison</h2>
+    <pre>{
+  &quot;resolvers&quot;: [
+    &quot;1.1.1.1&quot;,
+    &quot;8.8.8.8&quot;,
+    &quot;9.9.9.9&quot;
+  ],
+  &quot;queries&quot;: {
+    &quot;A&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: 206,
+        &quot;answers&quot;: [
+          &quot;23.215.0.138&quot;,
+          &quot;23.192.228.84&quot;,
+          &quot;23.215.0.136&quot;,
+          &quot;23.220.75.232&quot;,
+          &quot;23.220.75.245&quot;,
+          &quot;23.192.228.80&quot;
+        ],
+        &quot;ms&quot;: 131,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: 188,
+        &quot;answers&quot;: [
+          &quot;23.192.228.80&quot;,
+          &quot;23.220.75.232&quot;,
+          &quot;23.192.228.84&quot;,
+          &quot;23.215.0.136&quot;,
+          &quot;23.220.75.245&quot;,
+          &quot;23.215.0.138&quot;
+        ],
+        &quot;ms&quot;: 131,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: 82,
+        &quot;answers&quot;: [
+          &quot;23.192.228.84&quot;,
+          &quot;23.215.0.136&quot;,
+          &quot;23.215.0.138&quot;,
+          &quot;23.220.75.232&quot;,
+          &quot;23.220.75.245&quot;,
+          &quot;23.192.228.80&quot;
+        ],
+        &quot;ms&quot;: 130,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ],
+    &quot;AAAA&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: 95,
+        &quot;answers&quot;: [
+          &quot;2600:1406:5e00:6::17ce:bc1b&quot;,
+          &quot;2600:1406:bc00:53::b81e:94ce&quot;,
+          &quot;2600:1408:ec00:36::1736:7f24&quot;,
+          &quot;2600:1406:5e00:6::17ce:bc12&quot;,
+          &quot;2600:1406:bc00:53::b81e:94c8&quot;,
+          &quot;2600:1408:ec00:36::1736:7f31&quot;
+        ],
+        &quot;ms&quot;: 135,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: 93,
+        &quot;answers&quot;: [
+          &quot;2600:1408:ec00:36::1736:7f24&quot;,
+          &quot;2600:1406:bc00:53::b81e:94ce&quot;,
+          &quot;2600:1406:5e00:6::17ce:bc12&quot;,
+          &quot;2600:1408:ec00:36::1736:7f31&quot;,
+          &quot;2600:1406:5e00:6::17ce:bc1b&quot;,
+          &quot;2600:1406:bc00:53::b81e:94c8&quot;
+        ],
+        &quot;ms&quot;: 131,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: 168,
+        &quot;answers&quot;: [
+          &quot;2600:1406:bc00:53::b81e:94c8&quot;,
+          &quot;2600:1406:bc00:53::b81e:94ce&quot;,
+          &quot;2600:1408:ec00:36::1736:7f24&quot;,
+          &quot;2600:1408:ec00:36::1736:7f31&quot;,
+          &quot;2600:1406:5e00:6::17ce:bc12&quot;,
+          &quot;2600:1406:5e00:6::17ce:bc1b&quot;
+        ],
+        &quot;ms&quot;: 132,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ],
+    &quot;CNAME&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: null,
+        &quot;answers&quot;: [],
+        &quot;ms&quot;: 139,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: null,
+        &quot;answers&quot;: [],
+        &quot;ms&quot;: 136,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: null,
+        &quot;answers&quot;: [],
+        &quot;ms&quot;: 131,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ],
+    &quot;MX&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: 81568,
+        &quot;answers&quot;: [
+          &quot;0 .&quot;
+        ],
+        &quot;ms&quot;: 134,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: 12157,
+        &quot;answers&quot;: [
+          &quot;0 .&quot;
+        ],
+        &quot;ms&quot;: 130,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: 38055,
+        &quot;answers&quot;: [
+          &quot;0 .&quot;
+        ],
+        &quot;ms&quot;: 138,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ],
+    &quot;TXT&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: 86400,
+        &quot;answers&quot;: [
+          &quot;\&quot;v=spf1 -all\&quot;&quot;,
+          &quot;\&quot;_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\&quot;&quot;
+        ],
+        &quot;ms&quot;: 141,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: 11270,
+        &quot;answers&quot;: [
+          &quot;\&quot;_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\&quot;&quot;,
+          &quot;\&quot;v=spf1 -all\&quot;&quot;
+        ],
+        &quot;ms&quot;: 136,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: 38647,
+        &quot;answers&quot;: [
+          &quot;\&quot;v=spf1 -all\&quot;&quot;,
+          &quot;\&quot;_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\&quot;&quot;
+        ],
+        &quot;ms&quot;: 137,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ],
+    &quot;NS&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: 72254,
+        &quot;answers&quot;: [
+          &quot;a.iana-servers.net.&quot;,
+          &quot;b.iana-servers.net.&quot;
+        ],
+        &quot;ms&quot;: 134,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: 1634,
+        &quot;answers&quot;: [
+          &quot;b.iana-servers.net.&quot;,
+          &quot;a.iana-servers.net.&quot;
+        ],
+        &quot;ms&quot;: 131,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: 8534,
+        &quot;answers&quot;: [
+          &quot;a.iana-servers.net.&quot;,
+          &quot;b.iana-servers.net.&quot;
+        ],
+        &quot;ms&quot;: 131,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ],
+    &quot;SOA&quot;: [
+      {
+        &quot;server&quot;: &quot;1.1.1.1&quot;,
+        &quot;ttl&quot;: 291,
+        &quot;answers&quot;: [
+          &quot;ns.icann.org. noc.dns.icann.org. 2025120805 7200 3600 1209600 3600&quot;
+        ],
+        &quot;ms&quot;: 132,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;8.8.8.8&quot;,
+        &quot;ttl&quot;: 1911,
+        &quot;answers&quot;: [
+          &quot;ns.icann.org. noc.dns.icann.org. 2025120805 7200 3600 1209600 3600&quot;
+        ],
+        &quot;ms&quot;: 130,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      },
+      {
+        &quot;server&quot;: &quot;9.9.9.9&quot;,
+        &quot;ttl&quot;: 3354,
+        &quot;answers&quot;: [
+          &quot;ns.icann.org. noc.dns.icann.org. 2025120805 7200 3600 1209600 3600&quot;
+        ],
+        &quot;ms&quot;: 129,
+        &quot;rcode&quot;: &quot;NOERROR&quot;
+      }
+    ]
+  }
+}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Trace (Iterative Steps)</h2>
+    <pre>{
+  &quot;steps&quot;: [
+    {
+      &quot;server&quot;: &quot;192.112.36.4&quot;,
+      &quot;qname&quot;: &quot;example.com.&quot;,
+      &quot;qtype&quot;: &quot;A&quot;,
+      &quot;elapsed_ms&quot;: 179,
+      &quot;rcode&quot;: &quot;NOERROR&quot;,
+      &quot;answers&quot;: [],
+      &quot;authority&quot;: [
+        &quot;b.gtld-servers.net.&quot;,
+        &quot;g.gtld-servers.net.&quot;,
+        &quot;e.gtld-servers.net.&quot;,
+        &quot;k.gtld-servers.net.&quot;,
+        &quot;m.gtld-servers.net.&quot;,
+        &quot;a.gtld-servers.net.&quot;,
+        &quot;l.gtld-servers.net.&quot;,
+        &quot;c.gtld-servers.net.&quot;,
+        &quot;d.gtld-servers.net.&quot;,
+        &quot;i.gtld-servers.net.&quot;,
+        &quot;h.gtld-servers.net.&quot;,
+        &quot;j.gtld-servers.net.&quot;,
+        &quot;f.gtld-servers.net.&quot;
+      ],
+      &quot;additional&quot;: [
+        &quot;192.55.83.30&quot;,
+        &quot;192.41.162.30&quot;,
+        &quot;192.52.178.30&quot;,
+        &quot;192.48.79.30&quot;,
+        &quot;192.43.172.30&quot;,
+        &quot;192.54.112.30&quot;,
+        &quot;192.42.93.30&quot;,
+        &quot;192.35.51.30&quot;,
+        &quot;192.12.94.30&quot;,
+        &quot;192.31.80.30&quot;,
+        &quot;192.26.92.30&quot;,
+        &quot;192.33.14.30&quot;,
+        &quot;192.5.6.30&quot;,
+        &quot;2001:501:b1f9::30&quot;,
+        &quot;2001:500:d937::30&quot;,
+        &quot;2001:503:d2d::30&quot;,
+        &quot;2001:502:7094::30&quot;,
+        &quot;2001:503:39c1::30&quot;,
+        &quot;2001:502:8cc::30&quot;,
+        &quot;2001:503:eea3::30&quot;,
+        &quot;2001:503:d414::30&quot;,
+        &quot;2001:502:1ca1::30&quot;,
+        &quot;2001:500:856e::30&quot;,
+        &quot;2001:503:83eb::30&quot;,
+        &quot;2001:503:231d::2:30&quot;,
+        &quot;2001:503:a83e::2:30&quot;
+      ],
+      &quot;note&quot;: &quot;&quot;
+    },
+    {
+      &quot;server&quot;: &quot;192.55.83.30&quot;,
+      &quot;qname&quot;: &quot;example.com.&quot;,
+      &quot;qtype&quot;: &quot;A&quot;,
+      &quot;elapsed_ms&quot;: 133,
+      &quot;rcode&quot;: &quot;NOERROR&quot;,
+      &quot;answers&quot;: [],
+      &quot;authority&quot;: [
+        &quot;a.iana-servers.net.&quot;,
+        &quot;b.iana-servers.net.&quot;
+      ],
+      &quot;additional&quot;: [],
+      &quot;note&quot;: &quot;&quot;
+    },
+    {
+      &quot;server&quot;: &quot;199.43.135.53&quot;,
+      &quot;qname&quot;: &quot;example.com.&quot;,
+      &quot;qtype&quot;: &quot;A&quot;,
+      &quot;elapsed_ms&quot;: 137,
+      &quot;rcode&quot;: &quot;NOERROR&quot;,
+      &quot;answers&quot;: [
+        &quot;23.192.228.80&quot;,
+        &quot;23.192.228.84&quot;,
+        &quot;23.215.0.136&quot;,
+        &quot;23.215.0.138&quot;,
+        &quot;23.220.75.232&quot;,
+        &quot;23.220.75.245&quot;
+      ],
+      &quot;authority&quot;: [],
+      &quot;additional&quot;: [],
+      &quot;note&quot;: &quot;&quot;
+    }
+  ],
+  &quot;final_answers&quot;: [
+    &quot;23.192.228.80&quot;,
+    &quot;23.192.228.84&quot;,
+    &quot;23.215.0.136&quot;,
+    &quot;23.215.0.138&quot;,
+    &quot;23.220.75.232&quot;,
+    &quot;23.220.75.245&quot;
+  ]
+}</pre>
+  </div>
+
+</body>
+</html>

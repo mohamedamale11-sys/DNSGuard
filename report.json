@@ -1,0 +1,403 @@
+{
+  "domain": "example.com",
+  "created_at": "2025-12-14T10:54:13.911805+00:00",
+  "score": 85,
+  "findings": [
+    "Null MX detected: domain is signaling it does not accept email (good for reducing misdirected mail).",
+    "DNSSEC signals detected (DS + DNSKEY/RRSIG). Full validation requires a validating resolver and chain checks.",
+    "No CAA records found. CAA is optional but can reduce certificate mis-issuance risk."
+  ],
+  "summary": {
+    "primary_resolver": "1.1.1.1",
+    "resolvers_compared": [
+      "1.1.1.1",
+      "8.8.8.8",
+      "9.9.9.9"
+    ],
+    "ns_resolver_for_trace": "8.8.8.8"
+  },
+  "sections": {
+    "email": {
+      "domain": "example.com",
+      "mx": [
+        "0 ."
+      ],
+      "mx_null": true,
+      "spf": {
+        "raw": "v=spf1 -all",
+        "policy": "-all",
+        "warnings": []
+      },
+      "dmarc": {
+        "raw": "v=DMARC1;p=reject;sp=reject;adkim=s;aspf=s",
+        "policy": "reject",
+        "warnings": []
+      },
+      "dkim_selectors_checked": [],
+      "dkim_found": {},
+      "findings": [
+        "Null MX detected: domain is signaling it does not accept email (good for reducing misdirected mail)."
+      ]
+    },
+    "dnssec": {
+      "domain": "example.com",
+      "ds_present": true,
+      "rrsig_present": true,
+      "notes": [
+        "DNSSEC signals detected (DS + DNSKEY/RRSIG). Full validation requires a validating resolver and chain checks."
+      ]
+    },
+    "caa": {
+      "domain": "example.com",
+      "records": [],
+      "has_caa": false,
+      "notes": [
+        "No CAA records found. CAA is optional but can reduce certificate mis-issuance risk."
+      ]
+    },
+    "takeover": {
+      "domain": "example.com",
+      "cname_chain": [],
+      "dangling_cname": false,
+      "notes": []
+    },
+    "resolver_comparison": {
+      "resolvers": [
+        "1.1.1.1",
+        "8.8.8.8",
+        "9.9.9.9"
+      ],
+      "queries": {
+        "A": [
+          {
+            "server": "1.1.1.1",
+            "ttl": 206,
+            "answers": [
+              "23.215.0.138",
+              "23.192.228.84",
+              "23.215.0.136",
+              "23.220.75.232",
+              "23.220.75.245",
+              "23.192.228.80"
+            ],
+            "ms": 131,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": 188,
+            "answers": [
+              "23.192.228.80",
+              "23.220.75.232",
+              "23.192.228.84",
+              "23.215.0.136",
+              "23.220.75.245",
+              "23.215.0.138"
+            ],
+            "ms": 131,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": 82,
+            "answers": [
+              "23.192.228.84",
+              "23.215.0.136",
+              "23.215.0.138",
+              "23.220.75.232",
+              "23.220.75.245",
+              "23.192.228.80"
+            ],
+            "ms": 130,
+            "rcode": "NOERROR"
+          }
+        ],
+        "AAAA": [
+          {
+            "server": "1.1.1.1",
+            "ttl": 95,
+            "answers": [
+              "2600:1406:5e00:6::17ce:bc1b",
+              "2600:1406:bc00:53::b81e:94ce",
+              "2600:1408:ec00:36::1736:7f24",
+              "2600:1406:5e00:6::17ce:bc12",
+              "2600:1406:bc00:53::b81e:94c8",
+              "2600:1408:ec00:36::1736:7f31"
+            ],
+            "ms": 135,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": 93,
+            "answers": [
+              "2600:1408:ec00:36::1736:7f24",
+              "2600:1406:bc00:53::b81e:94ce",
+              "2600:1406:5e00:6::17ce:bc12",
+              "2600:1408:ec00:36::1736:7f31",
+              "2600:1406:5e00:6::17ce:bc1b",
+              "2600:1406:bc00:53::b81e:94c8"
+            ],
+            "ms": 131,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": 168,
+            "answers": [
+              "2600:1406:bc00:53::b81e:94c8",
+              "2600:1406:bc00:53::b81e:94ce",
+              "2600:1408:ec00:36::1736:7f24",
+              "2600:1408:ec00:36::1736:7f31",
+              "2600:1406:5e00:6::17ce:bc12",
+              "2600:1406:5e00:6::17ce:bc1b"
+            ],
+            "ms": 132,
+            "rcode": "NOERROR"
+          }
+        ],
+        "CNAME": [
+          {
+            "server": "1.1.1.1",
+            "ttl": null,
+            "answers": [],
+            "ms": 139,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": null,
+            "answers": [],
+            "ms": 136,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": null,
+            "answers": [],
+            "ms": 131,
+            "rcode": "NOERROR"
+          }
+        ],
+        "MX": [
+          {
+            "server": "1.1.1.1",
+            "ttl": 81568,
+            "answers": [
+              "0 ."
+            ],
+            "ms": 134,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": 12157,
+            "answers": [
+              "0 ."
+            ],
+            "ms": 130,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": 38055,
+            "answers": [
+              "0 ."
+            ],
+            "ms": 138,
+            "rcode": "NOERROR"
+          }
+        ],
+        "TXT": [
+          {
+            "server": "1.1.1.1",
+            "ttl": 86400,
+            "answers": [
+              "\"v=spf1 -all\"",
+              "\"_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\""
+            ],
+            "ms": 141,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": 11270,
+            "answers": [
+              "\"_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\"",
+              "\"v=spf1 -all\""
+            ],
+            "ms": 136,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": 38647,
+            "answers": [
+              "\"v=spf1 -all\"",
+              "\"_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\""
+            ],
+            "ms": 137,
+            "rcode": "NOERROR"
+          }
+        ],
+        "NS": [
+          {
+            "server": "1.1.1.1",
+            "ttl": 72254,
+            "answers": [
+              "a.iana-servers.net.",
+              "b.iana-servers.net."
+            ],
+            "ms": 134,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": 1634,
+            "answers": [
+              "b.iana-servers.net.",
+              "a.iana-servers.net."
+            ],
+            "ms": 131,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": 8534,
+            "answers": [
+              "a.iana-servers.net.",
+              "b.iana-servers.net."
+            ],
+            "ms": 131,
+            "rcode": "NOERROR"
+          }
+        ],
+        "SOA": [
+          {
+            "server": "1.1.1.1",
+            "ttl": 291,
+            "answers": [
+              "ns.icann.org. noc.dns.icann.org. 2025120805 7200 3600 1209600 3600"
+            ],
+            "ms": 132,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "8.8.8.8",
+            "ttl": 1911,
+            "answers": [
+              "ns.icann.org. noc.dns.icann.org. 2025120805 7200 3600 1209600 3600"
+            ],
+            "ms": 130,
+            "rcode": "NOERROR"
+          },
+          {
+            "server": "9.9.9.9",
+            "ttl": 3354,
+            "answers": [
+              "ns.icann.org. noc.dns.icann.org. 2025120805 7200 3600 1209600 3600"
+            ],
+            "ms": 129,
+            "rcode": "NOERROR"
+          }
+        ]
+      }
+    },
+    "trace": {
+      "steps": [
+        {
+          "server": "192.112.36.4",
+          "qname": "example.com.",
+          "qtype": "A",
+          "elapsed_ms": 179,
+          "rcode": "NOERROR",
+          "answers": [],
+          "authority": [
+            "b.gtld-servers.net.",
+            "g.gtld-servers.net.",
+            "e.gtld-servers.net.",
+            "k.gtld-servers.net.",
+            "m.gtld-servers.net.",
+            "a.gtld-servers.net.",
+            "l.gtld-servers.net.",
+            "c.gtld-servers.net.",
+            "d.gtld-servers.net.",
+            "i.gtld-servers.net.",
+            "h.gtld-servers.net.",
+            "j.gtld-servers.net.",
+            "f.gtld-servers.net."
+          ],
+          "additional": [
+            "192.55.83.30",
+            "192.41.162.30",
+            "192.52.178.30",
+            "192.48.79.30",
+            "192.43.172.30",
+            "192.54.112.30",
+            "192.42.93.30",
+            "192.35.51.30",
+            "192.12.94.30",
+            "192.31.80.30",
+            "192.26.92.30",
+            "192.33.14.30",
+            "192.5.6.30",
+            "2001:501:b1f9::30",
+            "2001:500:d937::30",
+            "2001:503:d2d::30",
+            "2001:502:7094::30",
+            "2001:503:39c1::30",
+            "2001:502:8cc::30",
+            "2001:503:eea3::30",
+            "2001:503:d414::30",
+            "2001:502:1ca1::30",
+            "2001:500:856e::30",
+            "2001:503:83eb::30",
+            "2001:503:231d::2:30",
+            "2001:503:a83e::2:30"
+          ],
+          "note": ""
+        },
+        {
+          "server": "192.55.83.30",
+          "qname": "example.com.",
+          "qtype": "A",
+          "elapsed_ms": 133,
+          "rcode": "NOERROR",
+          "answers": [],
+          "authority": [
+            "a.iana-servers.net.",
+            "b.iana-servers.net."
+          ],
+          "additional": [],
+          "note": ""
+        },
+        {
+          "server": "199.43.135.53",
+          "qname": "example.com.",
+          "qtype": "A",
+          "elapsed_ms": 137,
+          "rcode": "NOERROR",
+          "answers": [
+            "23.192.228.80",
+            "23.192.228.84",
+            "23.215.0.136",
+            "23.215.0.138",
+            "23.220.75.232",
+            "23.220.75.245"
+          ],
+          "authority": [],
+          "additional": [],
+          "note": ""
+        }
+      ],
+      "final_answers": [
+        "23.192.228.80",
+        "23.192.228.84",
+        "23.215.0.136",
+        "23.215.0.138",
+        "23.220.75.232",
+        "23.220.75.245"
+      ]
+    }
+  }
+}
